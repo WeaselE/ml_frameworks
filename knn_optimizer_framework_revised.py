@@ -6,6 +6,7 @@ import pandas as pd
 from itertools import combinations
 import pickle
 from sklearn.model_selection import cross_val_score
+from sklearn.impute import SimpleImputer
 
 
 class knn_framework():
@@ -132,6 +133,13 @@ class knn_framework():
         print(f'model saved to {file_name}')
 
         return model
+
+    def impute_data(self):
+        X = self.X
+        y = self.y
+        imputer = SimpleImputer()
+        X = imputer.fit_transform(X)
+        y = imputer.transform(y)
 
 
 if __name__ == '__main__':
